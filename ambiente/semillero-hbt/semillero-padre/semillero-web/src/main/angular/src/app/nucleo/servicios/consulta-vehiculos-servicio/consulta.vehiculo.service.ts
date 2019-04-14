@@ -31,12 +31,19 @@ export class ConsultaVehiculosService extends AbstractService {
  }
  
  //Cambiar rest
- public consultarVehiculos(idLinea:number):  Observable<VehiculoServicioDTO[]> {
-   let idLineaString= idLinea+""
-  return this.get<VehiculoServicioDTO[]>("/semillero-servicios", "/ConsultasRest/consultarVehiculos",
- {
-       "idLinea":idLineaString
-     });
+ public consultarVehiculos(idLinea:string):  Observable<VehiculoServicioDTO[]> {
+   if(idLinea != null){
+    return this.get<VehiculoServicioDTO[]>("/semillero-servicios", "/ConsultasRest/consultarVehiculos",
+    {
+          "idLinea":idLinea
+        });
+   }
+   else{
+    return this.get<VehiculoServicioDTO[]>("/semillero-servicios", "/ConsultasRest/consultarVehiculos",
+    {
+        });
+   }
+  
 }
 
 

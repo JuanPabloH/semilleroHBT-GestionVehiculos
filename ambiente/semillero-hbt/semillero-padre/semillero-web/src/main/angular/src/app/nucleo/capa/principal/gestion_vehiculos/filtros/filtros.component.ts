@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { ConsultaVehiculosService } from '../../../../../nucleo/servicios/consulta-vehiculos-servicio/consulta.vehiculo.service'
 import { marcaDTO } from '../modelo/MarcaDTO';
 import { lineaDTO } from '../modelo/LineaDTO';
+import { VehiculoServicioDTO } from '../modelo/vehiculoServicioDTO';
 @Component({
   selector: 'app-vehiculos-filtros',
   templateUrl: './filtros.component.html'
@@ -11,9 +12,13 @@ export class FiltrosComponent implements OnInit {
 	
 
   public listaLineasDTO: lineaDTO[]; 
+  public listaVehiculoDTO: VehiculoServicioDTO[]; 
   
   
   public idMarca:number;
+  public idLinea:string;
+
+  public hayDatos:boolean=true;
   constructor(private vehiculosService: ConsultaVehiculosService) { }
 
   ngOnInit() {
@@ -54,4 +59,24 @@ export class FiltrosComponent implements OnInit {
   console.log('resultado servicio.... ' + this.listaLineasDTO)
 }
 
+/**
+ * 
+ * Consulta los vehiculos existentes
+ */
+public listarVehiculos() {
+  this.listaVehiculoDTO = [];
+  
+  this.vehiculosService.consultarVehiculos(this.idLinea).subscribe(
+    vehiculos => {
+        this.listaVehiculoDTO = vehiculos;
+      },
+      error => {
+        console.log(error);
+      } 
+  ); 
+  console.log('resultado servicio.... ' + this.listaVehiculoDTO)   
+  
 }
+
+}
+

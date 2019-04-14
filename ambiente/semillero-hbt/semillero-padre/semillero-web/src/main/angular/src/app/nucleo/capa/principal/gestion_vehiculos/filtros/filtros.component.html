@@ -3,10 +3,33 @@
   <option *ngFor="let marca of listaMarcasDTO" value= {{marca.idMarca}} (click)="consultarLineas()">{{marca.nombre}}</option>
 
 </select> Lineas
-    <select name="linea" >
-      <option *ngFor="let linea of listaLineasDTO" >{{linea.nombre}}</option>
+    <select name="linea" [(ngModel)]="idLinea">
+      <option *ngFor="let linea of listaLineasDTO"  value= {{linea.idLinea}}>{{linea.nombre}}</option>
     
     </select></p>
+<p>{{idLinea}}</p>
 
 
 
+<input value="Consultar vehiculos" type="submit" (click)="listarVehiculos()" />
+  
+
+  <table *ngIf="hayDatos" border="1">
+      <caption>Vehiculos</caption>
+      <tr>
+          <th>Placa</th>
+          <th>Modelo</th>
+          <th>Linea</th>
+          <th>Marca</th>
+          
+          
+      </tr>
+      <tr *ngFor="let ve  of listaVehiculoDTO">
+          <td>{{ve.placa}}</td>
+          <td>{{ve.modelo}}</td>
+          <td>{{ve.linea.nombre}}</td>        
+          <td>{{ve.linea.marca.nombre}}</td>
+          
+       
+      </tr>
+      </table>

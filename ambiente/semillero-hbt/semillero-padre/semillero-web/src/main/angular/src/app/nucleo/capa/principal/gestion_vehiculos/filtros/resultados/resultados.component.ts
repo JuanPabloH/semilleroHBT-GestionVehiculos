@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { VehiculoServicioDTO } from '../modelo/vehiculoServicioDTO';
-
+import { Component, OnInit, Input } from '@angular/core';
+import { VehiculoServicioDTO } from '../../modelo/vehiculoServicioDTO';
+import { ConsultaVehiculosService } from '../../../../../../nucleo/servicios/consulta-vehiculos-servicio/consulta.vehiculo.service'
 @Component({
   selector: 'app-resultados',
   templateUrl: './resultados.component.html'
 })
 export class ResultadosComponent implements OnInit {
-  public idLinea:number;
+  @Input() public idLinea:string;
   public listaVehiculoDTO: VehiculoServicioDTO[]; 
-  constructor() { }
+  constructor(private vehiculosService: ConsultaVehiculosService) { }
 
   ngOnInit() {
   }
@@ -16,7 +16,7 @@ export class ResultadosComponent implements OnInit {
 
   public listarVehiculos() {
     this.listaVehiculoDTO = [];
-    this.idLinea=1;
+    
     this.vehiculosService.consultarVehiculos(this.idLinea).subscribe(
       vehiculos => {
           this.listaVehiculoDTO = vehiculos;
