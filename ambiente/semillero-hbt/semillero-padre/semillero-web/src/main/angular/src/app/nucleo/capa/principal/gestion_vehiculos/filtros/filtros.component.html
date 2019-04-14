@@ -1,3 +1,12 @@
-<p>
-  filtros works!
-</p>
+<p>Marcas
+<select name="marca" [(ngModel)]="idMarca">
+  <option *ngFor="let marca of listaMarcasDTO" value= {{marca.idMarca}} (click)="consultarLineas()">{{marca.nombre}}</option>
+
+</select> Lineas
+    <select name="linea" >
+      <option *ngFor="let linea of listaLineasDTO" >{{linea.nombre}}</option>
+    
+    </select></p>
+
+
+

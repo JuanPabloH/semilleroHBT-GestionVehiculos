@@ -5,6 +5,9 @@ import { AbstractService } from '../template.service';
 
 import { PersonaServicioDTO } from '../../capa/principal/gestion_vehiculos/modelo/personaServicioDTO';
 import { VehiculoServicioDTO } from "../../capa/principal/gestion_vehiculos/modelo/VehiculoServicioDTO";
+import { marcaDTO } from '../../capa/principal/gestion_vehiculos/modelo/MarcaDTO';
+import { lineaDTO } from '../../capa/principal/gestion_vehiculos/modelo/LineaDTO';
+
 
 @Injectable({
   providedIn: 'root'
@@ -28,11 +31,29 @@ export class ConsultaVehiculosService extends AbstractService {
  }
  
  //Cambiar rest
- public consultarVehiculos(idLinea: string):  Observable<VehiculoServicioDTO[]> {
+ public consultarVehiculos(idLinea:number):  Observable<VehiculoServicioDTO[]> {
+   let idLineaString= idLinea+""
   return this.get<VehiculoServicioDTO[]>("/semillero-servicios", "/ConsultasRest/consultarVehiculos",
  {
-       'idLinea':idLinea
+       "idLinea":idLineaString
      });
+}
+
+
+public consultarMarcas():  Observable<marcaDTO[]> {
+  
+ return this.get<marcaDTO[]>("/semillero-servicios", "/ConsultasRest/consultarMarcas",
+{
+    });
+}
+
+
+public consultarLineas(idMarca:number):  Observable<lineaDTO[]> {
+  let idMarcaString= idMarca+""
+ return this.get<lineaDTO[]>("/semillero-servicios", "/ConsultasRest/consultarLineasPorMarca",
+{
+      "idMarca":idMarcaString
+    });
 }
   
   

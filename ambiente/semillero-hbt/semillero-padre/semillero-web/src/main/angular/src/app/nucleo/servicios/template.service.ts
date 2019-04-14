@@ -46,12 +46,12 @@ export class AbstractService extends ServiciosObject {
         return url;
     }
 
-    public get<T>(module: string, path: string, params?: { [param: number]: string | string[]; }): Observable<T> {
+    public get<T>(module: string, path: string, params?: { [param: string]: string | string[]; }): Observable<T> {
         let url = this.buildURL(module, path);
         return this.http.get<T>(url, { headers: this.headers, params: params });
     }
 
-   
+    
 
 
     public post<T>(module: string, path: string, body: any, options?: RequestOptionsArgs): Observable<T> {

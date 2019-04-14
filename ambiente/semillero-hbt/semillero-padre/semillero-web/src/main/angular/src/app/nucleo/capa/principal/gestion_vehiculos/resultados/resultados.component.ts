@@ -5,6 +5,7 @@ import { ConsultaVehiculosService } from '../../../../../nucleo/servicios/consul
 import { PersonaServicioDTO } from '../modelo/personaServicioDTO';
 import { VehiculoServicioDTO } from '../modelo/vehiculoServicioDTO';
 
+
 @Component({
   selector: 'app-vehiculos-resultados',
   templateUrl: './resultados.component.html'
@@ -13,7 +14,7 @@ export class ResultadosComponent implements OnInit {
   @Input() public marca:string;
   @Input() public placa:string;
   
-  public idLinea:string;
+  public idLinea:number;
   
   public listaPersonasDTO: PersonaServicioDTO[]; 
 	public personaDTO: PersonaServicioDTO; 
@@ -40,16 +41,5 @@ export class ResultadosComponent implements OnInit {
 	    console.log('resultado servicio.... ' + this.listaPersonasDTO)
    }
    
-   public listarVehiculos() {
-	    this.listaVehiculoDTO = [];
-	  	this.vehiculosService.consultarVehiculos(this.idLinea).subscribe(
-	    	vehiculos => {
-		        this.listaVehiculoDTO = vehiculos;
-		      },
-		      error => {
-		        console.log(error);
-		      } 
-	    );    
-   }
-}
 
+}
