@@ -1,0 +1,12 @@
+Ejercicio 03/04/2019
+
+Angular 
+
+Crear una tabla de personas
+
+- Que datos necesito?
+- Al menos tener una condicion 
+- Mostrar la edad de la persona solo si es mayor de edad
+
+
+como funciona el routing ??
