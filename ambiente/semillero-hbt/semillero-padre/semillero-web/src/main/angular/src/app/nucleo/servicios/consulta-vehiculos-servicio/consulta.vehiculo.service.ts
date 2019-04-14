@@ -2,16 +2,15 @@ import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/toPromise';
 import { AbstractService } from '../template.service';
-import { VehiculoDTO } from '../../capa/principal/gestion_vehiculos/modelo/vehiculoDTO';
+
 import { PersonaServicioDTO } from '../../capa/principal/gestion_vehiculos/modelo/personaServicioDTO';
+import { VehiculoServicioDTO } from "../../capa/principal/gestion_vehiculos/modelo/VehiculoServicioDTO";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConsultaVehiculosService extends AbstractService {
 	
-  public vehiculo: VehiculoDTO;
-  public listaVehiculoDTO: VehiculoDTO[];
   
   /**
    * Constructor
@@ -29,15 +28,13 @@ export class ConsultaVehiculosService extends AbstractService {
  }
  
  //Cambiar rest
- public consultarListaVehiculos() : Observable<VehiculoDTO> { 
-  	return this.get<VehiculoDTO>("/semillero-servicios", "/ConsultasRest/consultarVehiculos");
- }
+ public consultarVehiculos(idLinea: string):  Observable<VehiculoServicioDTO[]> {
+  return this.get<VehiculoServicioDTO[]>("/semillero-servicios", "/ConsultasRest/consultarVehiculos",
+ {
+       'idLinea':idLinea
+     });
+}
   
-  public consultarVehiculo(placa: string) : Observable<VehiculoDTO> { 
-	  return this.get<VehiculoDTO>("/semillero-servicios", "/ConsultasRest/consultarVehiculo",
-	      {
-	        "placa":placa
-	      });
-  }
+  
 
 }

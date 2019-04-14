@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { ConsultaVehiculosService } from '../../../../../nucleo/servicios/consulta-vehiculos-servicio/consulta.vehiculo.service'
-import { VehiculoDTO } from '../modelo/vehiculoDTO';
+
 import { PersonaServicioDTO } from '../modelo/personaServicioDTO';
+import { VehiculoServicioDTO } from '../modelo/vehiculoServicioDTO';
 
 @Component({
   selector: 'app-vehiculos-resultados',
@@ -12,11 +13,13 @@ export class ResultadosComponent implements OnInit {
   @Input() public marca:string;
   @Input() public placa:string;
   
-  public listaVehiculoDTO: VehiculoDTO[]; 
-  public vehiculoDTO: VehiculoDTO; 
+  public idLinea:string;
   
   public listaPersonasDTO: PersonaServicioDTO[]; 
-  public personaDTO: PersonaServicioDTO; 
+	public personaDTO: PersonaServicioDTO; 
+	
+	public listaVehiculoDTO: VehiculoServicioDTO[]; 
+  public vehiculoDTO: VehiculoServicioDTO; 
   
   constructor(private vehiculosService: ConsultaVehiculosService) { }
 
@@ -24,8 +27,8 @@ export class ResultadosComponent implements OnInit {
   }
 
   public consultarPersonas() {
-	    let tipoID: string = '1';
-	    let numID: string = '123';
+	    let tipoID: string = 'CC';
+	    let numID: string = '12345';
 	  	this.vehiculosService.consultarPersonas(tipoID, numID).subscribe(
 	    	personas => {
 		        this.listaPersonasDTO = personas;
@@ -39,9 +42,9 @@ export class ResultadosComponent implements OnInit {
    
    public listarVehiculos() {
 	    this.listaVehiculoDTO = [];
-	  	this.vehiculosService.consultarListaVehiculos().subscribe(
-	    	veh => {
-		        this.marca = veh.marca;
+	  	this.vehiculosService.consultarVehiculos(this.idLinea).subscribe(
+	    	vehiculos => {
+		        this.listaVehiculoDTO = vehiculos;
 		      },
 		      error => {
 		        console.log(error);

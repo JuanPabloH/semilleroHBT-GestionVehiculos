@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { VehiculoDTO } from './modelo/vehiculoDTO';
+import { VehiculoServicioDTO } from './modelo/VehiculoServicioDTO';
 
 @Component({
   selector: 'app-gestion_vehiculos',
   templateUrl: './gestion_vehiculos.component.html'
 })
 export class GestionVehiculosComponent implements OnInit {
-  public vehiculo:VehiculoDTO;
+  public vehiculo:VehiculoServicioDTO;
   
   constructor() { }
 
   ngOnInit() {
-  	this.vehiculo = { marca: 'Mazda', placa: '123ABC', linea: '', modelo:'', color:''   };
+  	
   }
 
 }
